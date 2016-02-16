@@ -4,7 +4,7 @@ Easy to use jQuery plugin for scroll animation.
 #### Init script and mouse wheel settings:
 ```javascript
 $('html').csInit({ 
-wheelDelay: 300, // milisecounds
+  wheelDelay: 300, // milisecounds
   wheelDistance: 500, // pixels
   wheelEase: 'easeOutQuad' // ease type
 });
