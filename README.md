@@ -1,7 +1,7 @@
 # circus-scroll-tween
 Easy to use jQuery plugin for scroll animation.
 
-#### Init script ans mouse wheel settings:
+#### Init script and mouse wheel settings:
 ```javascript
 $('html').csInit({ 
 wheelDelay: 300, // milisecounds
