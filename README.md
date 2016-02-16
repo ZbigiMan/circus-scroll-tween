@@ -19,17 +19,17 @@ $('html').csInit({
 ```javascript
 
 $('.anim1').csTween({
-  begin: 0,
-  end: $('.slide1').height(),
+  begin: 0, // scroll position in pixels
+  end: 500, // scroll position in pixels
   from: {
-    letterSpacing: '0',
+    letterSpacing: '0',  
     opacity: '1'
   },
     to: {
       letterSpacing: '2vw',
       opacity: '0'
   },
-  easing: 'easeOutExpo',
+  easing: 'easeOutExpo', //  ease type
   onStart: function(el){
     //console.log('onStart');
   },
@@ -50,6 +50,8 @@ $('.anim1').csTween({
 });
 
 ```
+###### Note:
+* For CSS transform animation like 'rotate' use qTransform.js: https://github.com/puppybits/QTransform 
 
 #### Easing:
 Circus Scroll Tween use jQuery Easing v1.3 plugin - http://gsgd.co.uk/sandbox/jquery/easing/ under BSD Licence
