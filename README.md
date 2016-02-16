@@ -2,6 +2,11 @@
 Easy to use jQuery plugin for scroll animation.
 
 #### Init script and mouse wheel settings:
+
+```html
+<script src="js/circus-scroll-tween.min.js"></script>
+```
+
 ```javascript
 $('html').csInit({ 
   wheelDelay: 300, // milliseconds
