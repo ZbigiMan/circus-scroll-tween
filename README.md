@@ -13,6 +13,37 @@ $('html').csInit({
 
 ```javascript
 
+$('.anim1').csTween({
+  begin: 0,
+  end: $('.slide1').height(),
+  from: {
+    letterSpacing: '0',
+    opacity: '1'
+  },
+    to: {
+      letterSpacing: '2vw',
+      opacity: '0'
+  },
+  easing: 'easeOutExpo',
+  onStart: function(el){
+    //console.log('onStart');
+  },
+  onProgress: function(el,p){
+    //console.log(p);
+  },
+  onComplete: function(el){
+    //console.log('onComplete');
+    $(el).hide();
+  },
+  onReverseStart: function(el){
+    //console.log('onReverseStart');
+    $(el).show();
+  },
+  onReverseComplete: function(el){
+    //console.log('onReverseComplete');
+  }
+});
+
 ```
 
 #### Easing:
