@@ -51,7 +51,7 @@ $('.anim1').csTween({
 
 ```
 ###### Note:
-* For CSS transform animation like 'rotate' pleace use qTransform.js (https://github.com/puppybits/QTransform) or similar jQuery plugin.
+* For CSS transform animation like 'rotate' please use qTransform.js (https://github.com/puppybits/QTransform) or similar jQuery plugin.
 
 #### Easing:
 Circus Scroll Tween use jQuery Easing v1.3 plugin - http://gsgd.co.uk/sandbox/jquery/easing/ under BSD Licence
