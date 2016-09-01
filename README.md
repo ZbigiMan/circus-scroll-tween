@@ -8,7 +8,7 @@ Easy to use jQuery plugin for scroll animation.
 ```
 
 ```javascript
-$('html').csInit({ 
+$('html').csInit({
   wheelDelay: 300, // milliseconds
   wheelDistance: 500, // pixels
   wheelEase: 'easeOutQuad' // ease type
@@ -52,6 +52,20 @@ $('.anim1').csTween({
 ```
 ###### Note:
 * For CSS transform animation like 'rotate' please use qTransform.js (https://github.com/puppybits/QTransform) or similar jQuery plugin.
+
+#### csGoTo - Scrolls to defined position
+```javascript
+$().csGoTo({
+  scrollPos: 500, // pixels
+  duration: 500,
+  easing: 'easeOutQuad'
+});
+```
+
+#### csDestroy - Removes all scroll tweens and mousewheel events
+```javascript
+$().csDestroy();
+```
 
 #### Easing:
 Circus Scroll Tween use jQuery Easing v1.3 plugin - http://gsgd.co.uk/sandbox/jquery/easing/ under BSD Licence
