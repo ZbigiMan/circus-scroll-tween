@@ -12,7 +12,7 @@
       }else{
       return parseInt(aValue);
       }
-    }
+    };
 
     $.fn.csInit = function(options){ // Circus Scroll Init
 
@@ -44,8 +44,8 @@
 
          $(window).scroll(function(){
             circusScroll.onScroll();
-        })
-    }
+        });
+    };
 
     $.fn.csTween = function(options) { //Circus Scroll Tween
 
@@ -53,9 +53,25 @@
         options.started = 0;
         options.revCompleted = 0;
         options.revStarted = 0;
+        options.inlineStyle = $(this).attr('style');
 
         circusScroll.timeline[$(this).selector] = options;
-    }
+    };
+
+    $.fn.csDestroy = function(){
+      $.each(circusScroll.timeline,function(key,value){
+        $(key).removeAttr('style');
+        $(key).attr('style',value.inlineStyle);
+      });
+      circusScroll.timeline = [];
+      var Selector = window;
+      if (Selector.addEventListener) {
+          Selector.removeEventListener("mousewheel",circusScroll.wheel);
+          Selector.removeEventListener("DOMMouseScroll",circusScroll.wheel);
+      }else{
+          Selector.detachEvent("onmousewheel",circusScroll.wheel);
+      }
+    };
 
     circusScroll.wheel = function (event) {
         var delta = 0;
@@ -65,7 +81,7 @@
         circusScroll.handle(delta);
         if (event.preventDefault) event.preventDefault();
         event.returnValue = false;
-    }
+    };
 
     circusScroll.handle = function(delta) {
         var time = circusScroll.sets.wheelDelay,
@@ -80,7 +96,7 @@
             duration:time,
             easing:easing
         });
-    }
+    };
 
     circusScroll.onScroll = function(){
 
@@ -203,12 +219,8 @@
                     sets.onProgress(el,p);
                 }
             }
-
-
         });
     }
-
-
 
     /*
      * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
