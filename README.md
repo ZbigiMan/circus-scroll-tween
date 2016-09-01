@@ -60,6 +60,12 @@ $().csGoTo({
   duration: 500,
   easing: 'easeOutQuad'
 });
+
+$().csGoTo({
+  scrollPos: 'end', // scrolls to end of document
+  duration: 1000,
+  easing: 'easeOutQuad'
+});
 ```
 
 #### csDestroy - Removes all scroll tweens and mousewheel events
