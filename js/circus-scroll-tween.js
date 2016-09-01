@@ -58,6 +58,20 @@
         circusScroll.timeline[$(this).selector] = options;
     };
 
+    $.fn.csGoTo = function(options){
+
+      if(options.scrollPos=='end'){
+        options.scrollPos = $(document).height();
+      }
+      
+      $(circusScroll.sets.container).stop().animate({
+          scrollTop: options.scrollPos
+      },{
+          duration:options.duration,
+          easing:options.easing
+      });
+    };
+
     $.fn.csDestroy = function(){
       $.each(circusScroll.timeline,function(key,value){
         $(key).removeAttr('style');
@@ -104,6 +118,7 @@
 
             var scrollTop = $(circusScroll.sets.container).scrollTop(),
                 p = (scrollTop-sets.begin)/(sets.end-sets.begin); //progress
+
 
             if(p<1){
                 if(sets.completed>0){
