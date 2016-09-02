@@ -68,14 +68,14 @@ $().csGoTo({
 });
 ```
 
+#### csGetScrollTop - Returns current scroll position
+```javascript
+var scrollTop = $().csGetScrollTop();
+```
+
 #### csDestroy - Removes all scroll tweens and mouse wheel events
 ```javascript
 $().csDestroy();
-```
-
-#### csGetScrollTop - Returns current scroll position
-```javascript
-var scrollTop = $().csGetScrollTop());
 ```
 
 #### Easing:
