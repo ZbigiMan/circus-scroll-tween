@@ -63,7 +63,11 @@
       if(options.scrollPos=='end'){
         options.scrollPos = $(document).height();
       }
-      
+
+      if(options.scrollPos=='top'){
+        options.scrollPos = 0;
+      }
+
       $(circusScroll.sets.container).stop().animate({
           scrollTop: options.scrollPos
       },{
@@ -85,6 +89,10 @@
       }else{
           Selector.detachEvent("onmousewheel",circusScroll.wheel);
       }
+    };
+
+    $.fn.csGetScrollTop = function(){
+      return $(circusScroll.sets.container).scrollTop();
     };
 
     circusScroll.wheel = function (event) {
