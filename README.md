@@ -2,8 +2,13 @@
 Easy to use jQuery plugin for scroll animation.
 
 #### Init script and mouse wheel settings:
+
+```html
+<script src="js/circus-scroll-tween.min.js"></script>
+```
+
 ```javascript
-$('html').csInit({ 
+$('html').csInit({
   wheelDelay: 300, // milliseconds
   wheelDistance: 500, // pixels
   wheelEase: 'easeOutQuad' // ease type
@@ -14,17 +19,17 @@ $('html').csInit({
 ```javascript
 
 $('.anim1').csTween({
-  begin: 0,
-  end: $('.slide1').height(),
+  begin: 0, // scroll position in pixels
+  end: 500, // scroll position in pixels
   from: {
-    letterSpacing: '0',
+    letterSpacing: '0',  
     opacity: '1'
   },
     to: {
       letterSpacing: '2vw',
       opacity: '0'
   },
-  easing: 'easeOutExpo',
+  easing: 'easeOutExpo', //  ease type
   onStart: function(el){
     //console.log('onStart');
   },
@@ -44,6 +49,33 @@ $('.anim1').csTween({
   }
 });
 
+```
+###### Note:
+* For CSS transform animation like 'rotate' please use qTransform.js (https://github.com/puppybits/QTransform) or similar jQuery plugin.
+
+#### csGoTo - Scrolls to defined position
+```javascript
+$().csGoTo({
+  scrollPos: 500, // pixels
+  duration: 500,
+  easing: 'easeOutQuad'
+});
+
+$().csGoTo({
+  scrollPos: 'end', // scrolls to end of document
+  duration: 1000,
+  easing: 'easeOutQuad'
+});
+```
+
+#### csGetScrollTop - Returns current scroll position
+```javascript
+var scrollTop = $().csGetScrollTop();
+```
+
+#### csDestroy - Removes all scroll tweens and mouse wheel events
+```javascript
+$().csDestroy();
 ```
 
 #### Easing:
