@@ -41,7 +41,7 @@
 
         var Selector = window;
 
-        if (mac == false) {
+        if (mac === false) {
             if (Selector.addEventListener) {
                 Selector.addEventListener("mousewheel", circusScroll.wheel, false);
                 Selector.addEventListener("DOMMouseScroll", circusScroll.wheel, false);
