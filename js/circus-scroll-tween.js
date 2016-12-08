@@ -1,5 +1,7 @@
 (function ( $ ) {
 
+    "use strict";
+
     jQuery.browser = {};
     jQuery.browser.webkit = /webkit/.test(navigator.userAgent.toLowerCase());
 
@@ -12,7 +14,7 @@
       }else{
       return parseInt(aValue);
       }
-    }
+    };
 
     $.fn.csInit = function(options){ // Circus Scroll Init
 
@@ -44,8 +46,8 @@
 
          $(window).scroll(function(){
             circusScroll.onScroll();
-        })
-    }
+        });
+    };
 
     $.fn.csTween = function(options) { //Circus Scroll Tween
 
@@ -55,7 +57,7 @@
         options.revStarted = 0;
 
         circusScroll.timeline[$(this).selector] = options;
-    }
+    };
 
     circusScroll.wheel = function (event) {
         var delta = 0;
@@ -65,7 +67,7 @@
         circusScroll.handle(delta);
         if (event.preventDefault) event.preventDefault();
         event.returnValue = false;
-    }
+    };
 
     circusScroll.handle = function(delta) {
         var time = circusScroll.sets.wheelDelay,
@@ -80,7 +82,7 @@
             duration:time,
             easing:easing
         });
-    }
+    };
 
     circusScroll.onScroll = function(){
 
@@ -113,23 +115,21 @@
                 sets.revCompleted = 0;
             }
 
-
-
             $.each(sets.to, function(prop, value) {
 
-                if(sets.from==undefined){
+                if(sets.from===undefined){
                     sets.from = {};
                 }
 
-                if(sets.from[prop]==undefined){
+                if(sets.from[prop]===undefined){
                     sets.from[prop] = $(el).css(prop);
                 }
 
                 var e = circusScroll.parseValues(value), //End
-                    b = circusScroll.parseValues(sets.from[prop]) //Begin;
+                    b = circusScroll.parseValues(sets.from[prop]), //Begin;
                     c = e - b, //Change
                     d = sets.end-sets.begin, //Duration
-                    t = p*d //Time
+                    t = p*d; //Time
 
                 if(sets.completed==1){
                     t = d;
@@ -147,10 +147,9 @@
 
                 if(t>=0 && t<=d){
 
-                    var newIntVal = eval('$.easing.' + sets.easing + '(null,t, b, c, d)');
+                    newIntVal = $.easing[sets.easing](null,t, b, c, d);
 
-
-                    if(unit!=false){
+                    if(unit!==false){
                         newVal = newIntVal + unit;
                     }else{
                         newVal = newIntVal;
@@ -160,10 +159,12 @@
                 }
             });
 
+            //Callbacks
+
             //onStart
 
             if(sets.started==1){
-                if(sets.onStart!=undefined){
+                if(sets.onStart!==undefined){
                     sets.onStart(el);
                 }
             }
@@ -171,7 +172,7 @@
             //onComplete
 
             if(sets.completed==1){
-                if(sets.onComplete!=undefined){
+                if(sets.onComplete!==undefined){
                     sets.onComplete(el);
                 }
             }
@@ -180,7 +181,7 @@
 
             if(sets.revStarted==1){
 
-                if(sets.onReverseStart!=undefined){
+                if(sets.onReverseStart!==undefined){
                     sets.onReverseStart(el);
                 }
                 sets.revStarted++;
@@ -189,7 +190,7 @@
             //onReverseComplet
 
             if(sets.revCompleted==1){
-                if(sets.onReverseComplete!=undefined){
+                if(sets.onReverseComplete!==undefined){
                     sets.onReverseComplete(el);
                 }
                 sets.revCompleted++;
@@ -199,14 +200,14 @@
             //onProgress
 
             if(p>=0 && p<=1){
-                if(sets.onProgress!=undefined){
+                if(sets.onProgress!==undefined){
                     sets.onProgress(el,p);
                 }
             }
 
 
         });
-    }
+    };
 
 
 
@@ -310,13 +311,13 @@
             return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
         },
         easeInExpo: function (x, t, b, c, d) {
-            return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+            return (t===0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
         },
         easeOutExpo: function (x, t, b, c, d) {
             return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
         },
         easeInOutExpo: function (x, t, b, c, d) {
-            if (t==0) return b;
+            if (t===0) return b;
             if (t==d) return b+c;
             if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
             return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
@@ -333,36 +334,36 @@
         },
         easeInElastic: function (x, t, b, c, d) {
             var s=1.70158;var p=0;var a=c;
-            if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
-            if (a < Math.abs(c)) { a=c; var s=p/4; }
-            else var s = p/(2*Math.PI) * Math.asin (c/a);
+            if (t===0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*0.3;
+            if (a < Math.abs(c)) { a=c; s=p/4; }
+            else s = p/(2*Math.PI) * Math.asin (c/a);
             return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
         },
         easeOutElastic: function (x, t, b, c, d) {
             var s=1.70158;var p=0;var a=c;
-            if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
-            if (a < Math.abs(c)) { a=c; var s=p/4; }
-            else var s = p/(2*Math.PI) * Math.asin (c/a);
+            if (t===0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*0.3;
+            if (a < Math.abs(c)) { a=c; s=p/4; }
+            else s = p/(2*Math.PI) * Math.asin (c/a);
             return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
         },
         easeInOutElastic: function (x, t, b, c, d) {
             var s=1.70158;var p=0;var a=c;
-            if (t==0) return b;  if ((t/=d/2)==2) return b+c;  if (!p) p=d*(.3*1.5);
-            if (a < Math.abs(c)) { a=c; var s=p/4; }
-            else var s = p/(2*Math.PI) * Math.asin (c/a);
-            if (t < 1) return -.5*(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
-            return a*Math.pow(2,-10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )*.5 + c + b;
+            if (t===0) return b;  if ((t/=d/2)==2) return b+c;  if (!p) p=d*(0.3*1.5);
+            if (a < Math.abs(c)) { a=c; s=p/4; }
+            else s = p/(2*Math.PI) * Math.asin (c/a);
+            if (t < 1) return -0.5*(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+            return a*Math.pow(2,-10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )*0.5 + c + b;
         },
         easeInBack: function (x, t, b, c, d, s) {
-            if (s == undefined) s = 1.70158;
+            if (s === undefined) s = 1.70158;
             return c*(t/=d)*t*((s+1)*t - s) + b;
         },
         easeOutBack: function (x, t, b, c, d, s) {
-            if (s == undefined) s = 1.70158;
+            if (s === undefined) s = 1.70158;
             return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
         },
         easeInOutBack: function (x, t, b, c, d, s) {
-            if (s == undefined) s = 1.70158;
+            if (s === undefined) s = 1.70158;
             if ((t/=d/2) < 1) return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
             return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
         },
@@ -373,16 +374,16 @@
             if ((t/=d) < (1/2.75)) {
                 return c*(7.5625*t*t) + b;
             } else if (t < (2/2.75)) {
-                return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+                return c*(7.5625*(t-=(1.5/2.75))*t + 0.75) + b;
             } else if (t < (2.5/2.75)) {
-                return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+                return c*(7.5625*(t-=(2.25/2.75))*t + 0.9375) + b;
             } else {
-                return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+                return c*(7.5625*(t-=(2.625/2.75))*t + 0.984375) + b;
             }
         },
         easeInOutBounce: function (x, t, b, c, d) {
-            if (t < d/2) return $.easing.easeInBounce (x, t*2, 0, c, d) * .5 + b;
-            return $.easing.easeOutBounce (x, t*2-d, 0, c, d) * .5 + c*.5 + b;
+            if (t < d/2) return $.easing.easeInBounce (x, t*2, 0, c, d) * 0.5 + b;
+            return $.easing.easeOutBounce (x, t*2-d, 0, c, d) * 0.5 + c* 0.5 + b;
         }
     });
 

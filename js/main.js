@@ -1,5 +1,7 @@
 $(window).load(function(){
 
+  "use strict";
+
   $('html').csInit({
     wheelDelay: 300,
     wheelDistance: 100,
