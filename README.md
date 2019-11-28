@@ -1,8 +1,8 @@
 >#### Golden age of jQuery has passed away.
 
->## See Circus Scroll 2 - Angular 2 Directive for scroll animations.
+>## ngx-scrollo - Angular 2x Directive for scroll animations.
 
->### [https://github.com/ZbigiMan/circus-scroll2](https://github.com/ZbigiMan/circus-scroll2 "Circus Scroll 2 - Angular 2 Directive for scroll animations.")
+>## https://github.com/ZbigiMan/ngx-scrollo
 
 ####
 
